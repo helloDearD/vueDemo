@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+
+  <style>
+    .ball {
+      width: 15px;
+      height: 15px;
+      background: red;
+      border-radius: 50%;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <button @click="flg=!flg">快到碗里去啊</button>
+    <transition @before-enter="beforeEnter" @enter="enter" @after-enter="afterEnter">
+      <div v-show="flg" class="ball">
+    </transition>
+    </div>
+  </div>
+</body>
+<script>
+  new Vue({
+    el: "#app",
+    data: {
+      flg: false,
+    },
+    methods: {
+      //el就是DOM元素，是个原生的对象
+      beforeEnter(el) {
+        //设置开始的样式,开始的位置
+        el.style.transform = "translate(0,0)"
+      },
+      // enter表示动画开始的样式，设置终止样式
+      enter(el,done) {
+          el.offsetWidth
+          el.style.transform="translate(150px,450px)";
+          el.style.transition="all 1s ease";
+          done()//就是afterEnter的引用
+      },
+      afterEnter(el) {
+          this.flg = !this.flg;
+
+      }
+    }
+  })
+
+</script>
+
+</html>

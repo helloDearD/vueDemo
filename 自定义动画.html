@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+
+  <style>
+    /* v-enter开始，leave-to结束状态 */
+
+    .v-enter,
+    .v-leave-to {
+      opacity: 0;
+      transform: translateX(70px)
+    }
+
+    /* v-enter-active,v-leave-active 入场，离场的动画效果 */
+
+    .v-enter-active,
+    .v-leave-active {
+      transition: all 0.5s ease
+    }
+
+  /* v-enter开始，leave-to结束状态 */
+
+    .my-enter,
+    .my-leave-to {
+      opacity: 0;
+      transform: translateY(70px)
+    }
+
+    /* v-enter-active,v-leave-active 入场，离场的动画效果 */
+
+    .my-enter-active,
+    .my-leave-active {
+      transition: all 0.5s ease
+    }
+
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <!--1. 使用transition把动画的东西包裹起来 -->
+    <button @click="flg=!flg">改变</button>
+    <transition>
+      <h3 v-if="flg">这是我要显示的内容！</h3>
+    </transition>
+     <!--1. 使用transition把动画的东西包裹起来 -->
+     <button @click="flg1=!flg1">改变下边的</button>
+    <transition name="my">
+            <h3 v-if="flg1">自定义的内容显示</h3>
+    </transition>
+  </div>
+</body>
+<script>
+  new Vue({
+    el: "#app",
+    data: {
+      flg: false,
+      flg1:false
+    }
+  })
+
+</script>
+
+</html>

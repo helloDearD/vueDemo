@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="./animation.css">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+
+  <style>
+    /* 入场使用bounceIn */
+
+    /* 离场使用bounceOut */
+
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <!--1. 使用transition把动画的东西包裹起来 -->
+    <button @click="flg=!flg">改变</button>
+    <!--
+    <transition enter-active-class="animated bounceIn" leave-active-class="animated bounceOut"> 
+      <h3 v-if="flg">这是我要显示的内容！</h3>
+    </transition> -->
+    <!-- <transition :duration="100" enter-active-class=" bounceIn" leave-active-class=" bounceOut"> 
+            <h3  class="animated" v-if="flg">这是我要显示的内容！</h3>
+          </transition> -->
+    <!-- 使用duration设置进入，离开的时间 -->
+    <transition :duration="{enter:200,leave:400}" enter-active-class=" bounceIn" leave-active-class=" bounceOut">
+      <h3 class="animated" v-if="flg">这是我要显示的内容！</h3>
+    </transition>
+  </div>
+</body>
+<script>
+  new Vue({
+    el: "#app",
+    data: {
+      flg: false,
+    }
+  })
+
+</script>
+
+</html>

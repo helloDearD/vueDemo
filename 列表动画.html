@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+
+  <style>
+    li {
+      border: 1px dashed #999;
+      margin: 5px;
+      line-height: 35px;
+      padding-left: 5px;
+      font-size: 12px;
+      width: 100%
+    }
+
+    .v-enter,
+    .v-leave-to {
+      opacity: 0;
+      transform: translateY(70px)
+    }
+
+    .v-enter-active,
+    .v-leave-active {
+      transition: all 0.6s ease
+    }
+    /* 必须写的 */
+    .v-move{
+        transition:all 0.6s ease
+    }
+    .v-leave-active{
+        position: absolute;
+    }
+
+   li:hover{
+       background-color: hotpink;
+       transition:all 0.5s ease
+   }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <!--1. 使用transition把动画的东西包裹起来 -->
+    <div>
+      <label for="">
+        id:
+        <input v-model="id" type="text">
+      </label>
+      <label for="">
+        name:
+        <input v-model="name" type="text">
+      </label>
+      <button @click="add">添加</button>
+    </div>
+    <!-- <ul> -->
+      <!-- 在实现列表过度，并由v-for循环出来的就要用transition-group -->
+      <!-- appear 实现刚刚入场的动画 -->
+      <!-- tag属性指定ransition-group渲染的标签，默认是span，但是有时候不符合w3c标准 -->
+      <transition-group appear tag="ul">
+        <li  v-for="(item,index) in list " @click="del(index)" :key="item.id">
+          {{item.id}}==={{item.name}}
+        </li>
+      </transition-group>
+    <!-- </ul> -->
+  </div>
+</body>
+<script>
+  new Vue({
+    el: "#app",
+    data: {
+      flg: false,
+      id: '',
+      name: '',
+      list: [{
+          id: 1,
+          name: '代睿'
+        },
+        {
+          id: 2,
+          name: '代提'
+        },
+        {
+          id: 3,
+          name: '代说'
+        },
+      ]
+
+    },
+    methods: {
+      add() {
+        this.list.push({
+          id: this.id,
+          name: this.name
+        })
+        this.name = this.id = ""
+      },
+      del(index){
+          this.list.splice(index,1)
+      }
+    }
+  })
+
+</script>
+
+</html>
