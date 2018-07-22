@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+
+  <style>
+    /* v-enter开始，leave-to结束状态 */
+
+    .v-enter,
+    .v-leave-to {
+      opacity: 0;
+      transform: translateX(70px)
+    }
+
+    /* v-enter-active,v-leave-active 入场，离场的动画效果 */
+
+    .v-enter-active,
+    .v-leave-active {
+      transition: all 0.5s ease
+    }
+
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <my1></my1>
+    <my2></my2>
+    <my3></my3>
+    <my4></my4>
+    <button @click="name='my1'">change</button>
+    <transition mode="out-in">
+      <components :is="name"></components>
+    </transition>
+
+  </div>
+  <template id="my3">
+    <div>这是第三个</div>
+  </template>
+</body>
+<script>
+  //方法一
+  let com1 = Vue.extend({
+    template: `<h3>组价创建1a</h3>`
+  })
+  Vue.component('my1', com1)
+  // 方法二
+  Vue.component("my2", {
+    template: `<div>{{name}}</div>`,
+    data() {
+      return {
+        name: "dairui"
+      }
+    }
+  })
+  // 方法三
+  Vue.component("my3", {
+    template: "#my3"
+  })
+  new Vue({
+    el: "#app",
+    data: {
+      name: 'my2'
+    },
+    components: {
+      my4: {
+        template: "<div>这是私有的组建</div>"
+      }
+    }
+  })
+
+</script>
+
+</html>

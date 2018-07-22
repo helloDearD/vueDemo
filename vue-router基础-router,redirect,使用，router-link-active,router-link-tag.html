@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+  <style>
+    .router-link-active {
+      color: red
+    }
+
+    /* v-enter开始，leave-to结束状态 */
+
+    .v-enter,
+    .v-leave-to {
+      opacity: 0;
+      transform: translateX(70px)
+    }
+
+    /* v-enter-active,v-leave-active 入场，离场的动画效果 */
+
+    .v-enter-active,
+    .v-leave-active {
+      transition: all 0.5s ease
+    }
+
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <button @click="change">change route</button>
+    <a href="#/login">login</a>
+    <a href="#/register">register</a>
+    <hr>
+    <router-link to="/login" tag=div>login</router-link>
+    <router-link to="/register">register</router-link>
+    <transition mode="out-in">
+      <router-view></router-view>
+    </transition>
+
+
+  </div>
+
+</body>
+<script>
+  const login = {
+    template: "<h1>login</h1>"
+  }
+  const register = {
+    template: "<h1>register</h1>"
+  }
+  let router = new VueRouter({
+    // linkActiveClass:"activeName"
+    routes: [{
+      path: '/',
+      redirect: '/register',
+      component: login
+    }, {
+      path: '/login',
+      component: login
+    }, {
+      path: '/register',
+      component: register
+    }]
+  })
+  new Vue({
+    el: "#app",
+    router: router,
+    data: {
+      name: 'my'
+    },
+    methods: {
+      change() {
+        console.log();
+        this.$router.push({
+          path: "/register"
+        })
+      }
+    },
+    components: {
+
+    }
+  })
+
+</script>
+
+</html>

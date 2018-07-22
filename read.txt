@@ -1,0 +1,5 @@
+1.nrm的使用：
+    1.npm i -g nrm 
+    2.nrm ls
+    3.nrm use ""
+    

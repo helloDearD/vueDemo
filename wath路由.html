@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+  <style>
+
+
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <router-view></router-view>
+  </div>
+
+</body>
+<script>
+  const header = {
+    template: "<h1>header</h1>"
+  }
+  const left = {
+    template: "<h1>left</h1>"
+  }
+  const right = {
+    template: "<h1>right</h1>"
+  }
+  let router = new VueRouter({
+    // linkActiveClass:"activeName"
+    routes: [
+        {
+      path: '/',
+      component: header,
+    }, {
+      path: '/left',
+      component: left,
+    }]
+  })
+  new Vue({
+    el: "#app",
+    router: router,
+    data: {
+      name: 'my'
+    },
+    methods: {
+    
+    },
+    components: {
+
+    },
+    watch:{
+        '$route.path':function(){
+            console.log("1")
+        }
+    }
+  })
+
+</script>
+
+</html>

@@ -29,6 +29,11 @@ module.exports={
             }
         ]
     },
+    resolve:{
+        alias:{
+            "vue$":"vue/dist/vue.js"
+        }
+    },
     devServer:{
         //devservcer的第二种配置形式，相对比较麻烦,引入webpack,配置plugin
         open:true,//自动打开浏览器
