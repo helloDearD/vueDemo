@@ -2,4 +2,13 @@
     1.npm i -g nrm 
     2.nrm ls
     3.nrm use ""
-    
+2.在node中
+    1.向外暴露成员使用module.export
+    2.接受使用的是require
+3.在es6中
+    1.使用expport,和export.defulat暴露对象,但是export.defualt只能暴露一次
+    2.使用import导入,export向外暴露的成员只能使用{}方式接受，这种叫做按需导出
+    3.在一个模块中，可以使用export 和 export.deaful 同时使用 
+4.style的使用 
+    1.scope该组件内部使用
+    2.lang="scss/less"，指定css预编译语言
