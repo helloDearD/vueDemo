@@ -13,7 +13,10 @@ Vue.component(Swipe.name, Swipe);
 Vue.component(SwipeItem.name, SwipeItem);
 Vue.use(Mint);
 Vue.config.productionTip = false
-
+import moment from "moment"
+Vue.filter("dataFormate",(datastr,pattern="YYYY-MM-DD HH:mm:ss")=>{
+return  moment(datastr).format(pattern)
+})
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
